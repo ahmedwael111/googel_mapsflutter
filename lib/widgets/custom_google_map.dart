@@ -26,8 +26,10 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       body: Stack(
         children: [
           GoogleMap(
+            // mapType: MapType.satellite,
             onMapCreated: (controller) {
               googleMapController = controller;
+              initMapStyle();
             },
             initialCameraPosition: initialCameraPosition,
             cameraTargetBounds: CameraTargetBounds(
@@ -47,7 +49,6 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                   CameraUpdate.newCameraPosition(
                     const CameraPosition(
                       target: LatLng(30.531748913625503, 31.38476543450614),
-
                       zoom: 15,
                     ),
                   ),
@@ -60,6 +61,15 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
       ),
     );
   }
+
+  void initMapStyle() async {
+    var mapStyleDark = await DefaultAssetBundle.of(
+      context,
+    ).loadString('assets/maps_styles/map_dark_style.json');
+    // ignore: deprecated_member_use
+    googleMapController.setMapStyle(mapStyleDark);
+  }
+  
 }
 // world view 0 -> 3
  // country view 4-> 6
