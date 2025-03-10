@@ -19,17 +19,44 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
     super.initState();
   }
 
+  late GoogleMapController googleMapController;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
-        initialCameraPosition: initialCameraPosition,
-        cameraTargetBounds: CameraTargetBounds(
-          LatLngBounds(
-            southwest: LatLng(30.447115811757914, 31.20534317413323),
-            northeast: LatLng(30.736146431967974, 31.678369192780483),
+      body: Stack(
+        children: [
+          GoogleMap(
+            onMapCreated: (controller) {
+              googleMapController = controller;
+            },
+            initialCameraPosition: initialCameraPosition,
+            cameraTargetBounds: CameraTargetBounds(
+              LatLngBounds(
+                southwest: LatLng(30.447115811757914, 31.20534317413323),
+                northeast: LatLng(30.736146431967974, 31.678369192780483),
+              ),
+            ),
           ),
-        ),
+          Positioned(
+            bottom: 50,
+            left: 20,
+            right: 90,
+            child: ElevatedButton(
+              onPressed: () {
+                googleMapController.animateCamera(
+                  CameraUpdate.newCameraPosition(
+                    const CameraPosition(
+                      target: LatLng(30.531748913625503, 31.38476543450614),
+
+                      zoom: 15,
+                    ),
+                  ),
+                );
+              },
+              child: const Text('HOME'),
+            ),
+          ),
+        ],
       ),
     );
   }
