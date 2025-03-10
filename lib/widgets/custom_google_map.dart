@@ -22,7 +22,15 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(initialCameraPosition: initialCameraPosition),
+      body: GoogleMap(
+        initialCameraPosition: initialCameraPosition,
+        cameraTargetBounds: CameraTargetBounds(
+          LatLngBounds(
+            southwest: LatLng(30.447115811757914, 31.20534317413323),
+            northeast: LatLng(30.736146431967974, 31.678369192780483),
+          ),
+        ),
+      ),
     );
   }
 }
