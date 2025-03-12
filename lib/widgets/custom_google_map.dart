@@ -17,14 +17,14 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
   void initState() {
     initialCameraPosition = const CameraPosition(
       target: LatLng(30.535924242653955, 31.37988834664815),
-      zoom: 10,
+      zoom: 20,
     );
     location = Location();
     upMyLocation();
-    initMarker();
-    initPolinies();
-    initPolygons();
-    initCircles();
+    // initMarker();
+    // initPolinies();
+    // initPolygons();
+    // initCircles();
     super.initState();
   }
 
@@ -55,24 +55,6 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
                 southwest: LatLng(30.125967590301627, 30.53517875284858),
                 northeast: LatLng(31.190412733238606, 32.37551305932879),
               ),
-            ),
-          ),
-          Positioned(
-            bottom: 50,
-            left: 20,
-            right: 290,
-            child: ElevatedButton(
-              onPressed: () {
-                googleMapController?.animateCamera(
-                  CameraUpdate.newCameraPosition(
-                    const CameraPosition(
-                      target: LatLng(30.531748913625503, 31.38476543450614),
-                      zoom: 15,
-                    ),
-                  ),
-                );
-              },
-              child: const Text('HOME'),
             ),
           ),
         ],
@@ -205,6 +187,13 @@ class _CustomGoogleMapState extends State<CustomGoogleMap> {
         target: LatLng(locationData.latitude!, locationData.longitude!),
         zoom: 15,
       );
+      var myMarker = Marker(
+        markerId: const MarkerId('myLocation'),
+        position: LatLng(locationData.latitude!, locationData.longitude!),
+        infoWindow: InfoWindow(title: 'My Location'),
+      );
+      markers.add(myMarker);
+      setState(() {});
       googleMapController?.animateCamera(
         CameraUpdate.newCameraPosition(cameraPosition),
       );
