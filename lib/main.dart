@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterwithgooglemap/widgets/custom_google_map.dart';
+import 'package:flutterwithgooglemap/views/home_view.dart';
 
 void main() {
   runApp(const TestGoogleMapsFlutter());
@@ -10,6 +10,6 @@ class TestGoogleMapsFlutter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: CustomGoogleMap());
+    return const MaterialApp(home: HomeView());
   }
 }
